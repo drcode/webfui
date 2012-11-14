@@ -1,0 +1,66 @@
+*presentation notes
+
+What is the DOM?
+
+Problems with the DOM
+  - It changes
+  - Changing it is slow
+
+What is EDN?
+
+What is AJAX?
+
+How to build a web framework:
+   - Should do things the Clojure Way
+   - Code should be in the functional style
+   - The browser DOM should be EDN data stored in an atom
+
+DOM is not a complete representation of browser state
+   - Can't set button as pushed
+   - Can't set scrollbar position
+   - Can't set text selection
+
+Problem: AJAX requires side effects. Reframed problem: Our state atom no longer contains the whole world
+   
+Original sin: Our state is _always_ corrupt in a program that uses AJAX.
+
+We have to contain the corruption (Can be done with FP)
+We have to repair the corruption (Requires imperative programming)
+
+"State Corruption" Design Pattern
+
+AJAX=Corruption of state
+
+Corruption is implicit- Make it explicit
+
+GET: State item has value of nil
+     or selection variable has id that points to nonexistent item
+
+POST: Create new item in state with id=nil
+
+PUT: Have "holding area" in state, set source of truth=nil. Move from holding area back to final area 
+
+DELETE: Just delete item
+
+*todos
+item insert/deletion in delta system
+text selection
+full IK artwork
+"preview" in calculator
+
+*Hello World
+(ns my-app.core
+    (:use [webfui.framework :only [launch-app]]))
+
+(defn render-all []
+      "hello world!")
+
+(launch-app (atom nil) render-all)
+
+
+
+*timing
+~250 for mouseup
+~150 for webfui code
+~90 for parsing html
+~90 for delta detection

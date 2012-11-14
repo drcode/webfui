@@ -1,0 +1,31 @@
+html, body, div, span, object,form,input,text,h1,h2,button,label,a,img{-moz-user-select:none;
+                                                                       -webkit-user-select:none;
+                                                                       -webkit-user-drag:none;
+}
+body{bottom:0px;
+     top:0px;
+     left:0px;
+     right:0px;
+     padding:0px;
+     margin:0px;
+     position:absolute;
+     font-size:3em;
+     overflow:hidden;
+     color:white}
+div.layer{
+background-color:blue;
+        position:absolute;
+top:0;
+left:0;
+}
+div{background-color:blue;
+    text-align:center;
+    position:absolute;
+    font-size:1em;
+    padding:0px;
+    margin:0px;
+    -webkit-border-radius:0.6em;
+    cursor:pointer}
+.dragged{position:absolute;
+         opacity:0.5;
+         background-color:black}

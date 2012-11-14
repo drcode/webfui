@@ -1,0 +1,22 @@
+html, body, div, span, object,form,input,text,h1,h2,button,label,a,img{-moz-user-select:none;
+                                                                       -webkit-user-select:none;
+                                                                       -webkit-user-drag:none}
+body{margin:0;
+     padding:0;
+     position:absolute;
+     bottom:0px;
+     top:0px;
+     left:0px;
+     right:0px;
+     overflow:hidden}
+.node{opacity:0.5;
+      position:absolute;
+      color:white;
+      padding:5px;
+      font-weight:bold;
+      background-color:red}
+.destination{background-color:blue}
+.box{opacity:0.5;
+     position:absolute;
+     background-color:black;
+     -webkit-transform-origin:0% 0%}

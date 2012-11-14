@@ -1,0 +1,43 @@
+@font-face {font-family:"Pocket Calculator";src:url("POCKC___.eot?") format("eot"),url("POCKC___.woff") format("woff"),url("POCKC___.ttf") format("truetype"),url("POCKC___.svg#PocketCalculator") format("svg");font-weight:normal;font-style:normal;}
+html, body, div, span, object,form,input,text,h1,h2,button,label,a,img{-moz-user-select:none;
+                                                                       -webkit-user-select:none;
+                                                                       -webkit-user-drag:none}
+textarea,input[type='text']{-webkit-user-select:text;
+                            -moz-user-select:text}
+body{background-color:grey;
+     text-align:center;
+     font-weight:bold;
+     font-family:sans-serif;
+     font-size:3em}
+table{margin-top:1em;
+      background-color:black;
+      margin-left:auto;
+      margin-right:auto;
+      padding:0.2em;
+      -webkit-border-radius:0.5em;
+      border-radius:0.5em}
+div{text-align:center;
+    margin:0.2em;
+    width:2em;
+    padding-top:0.4em;
+    padding-bottom:0.35em;
+    -webkit-border-radius:0.3em;
+    border-radius:0.3em;
+    background-color:silver}
+#ms,#mr,#ac{background-color:crimson}
+#mult,#div,#plus,#minus,#period{background-color:tan}
+#eq{width:4.5em;background-color:orange}
+#display{background-color:turquoise;
+         width:6.5em;
+         -webkit-border-radius:0.2em;
+         border-radius:0.2em;
+         padding-top:0.1em;
+         padding-bottom:0.0em;
+         padding-right:0.35em;
+         font-family:"Pocket Calculator";
+         font-size:1.4em;
+         text-align:right}
+div{cursor:pointer}
+div:active{-webkit-transform:scale(0.9);
+           -moz-transform:scale(0.9);
+           opacity:0.7}
