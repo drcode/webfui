@@ -4,7 +4,7 @@ Client Side Web Development Framework For ClojureScript
 
 ## Usage
 
-Documentation is still pending (expect it by November 2012). At this time, your best guide is to run the code in the "webfui-examples" directory- Just run "lein deps;lein run" and fire up your Safari, Chrome, or iOS browser to "localhost:8080"
+Documentation is still pending (expect it by November 2012). At this time, your best guide is to run the code in the "webfui-examples" directory- Just run "lein deps;lein cljsbuild once;lein run" and fire up your Safari, Chrome, or iOS browser to "localhost:8080"
 
 ## License
 
