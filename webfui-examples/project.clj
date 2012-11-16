@@ -7,6 +7,7 @@
                  [hiccup "1.0.1"]]
   :main webfui-examples.server
   :plugins [[lein-cljsbuild "0.2.7"]]
+  :source-paths ["src-clj"]
   :cljsbuild {:builds {:add_two_numbers {:source-path "src-cljs/add_two_numbers"
                                          :compiler {:output-to "resources/public/js/add_two_numbers.js"
                                                     :optimizations :whitespace
