@@ -4,10 +4,16 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>webfui</groupId>
   <artifactId>webfui</artifactId>
-  <version>0.2</version>
+  <version>0.2.1</version>
   <name>webfui</name>
   <description>Alpha release of Webfui- All Webfui source included in this repository release under Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php)</description>
   <url>http://lisperati.com</url>
+  <scm>
+    <connection>scm:git:git://github.com/drcode/webfui.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/drcode/webfui.git</developerConnection>
+    <tag>aba4347092761dfdcaa5605b807c23fa458da41b</tag>
+    <url>https://github.com/drcode/webfui</url>
+  </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>test</testSourceDirectory>

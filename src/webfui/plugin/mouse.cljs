@@ -71,7 +71,7 @@
   (swap! mouse-watchers assoc id fun))
 
 (defn mouse-down [parsed-html ev]
-  (.preventDefault ev)
+  #_(.preventDefault ev)
   (let [target (.-target ev)
         [new-element point] (mouse-element parsed-html ev)
         event (mouse-event new-element)]

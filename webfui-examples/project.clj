@@ -2,7 +2,7 @@
   :description "Examples for Webfui"
   :source-path "src-clj"
   :dependencies [[org.clojure/clojure "1.4.0"]
-                 [webfui "0.2"]
+                 [webfui "0.2.1"]
                  [noir "1.3.0-beta10"]
                  [hiccup "1.0.1"]]
   :main webfui-examples.server
