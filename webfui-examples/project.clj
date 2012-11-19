@@ -5,6 +5,7 @@
                  [webfui "0.2.1"]
                  [noir "1.3.0-beta10"]
                  [hiccup "1.0.1"]]
+  :min-lein-version "2.0.0"
   :main webfui-examples.server
   :plugins [[lein-cljsbuild "0.2.7"]]
   :source-paths ["src-clj"]
