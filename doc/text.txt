@@ -1,0 +1,20 @@
+Merciless, Tyrannical Web Programming With WebFUI
+
+I'm sure all of you have had the following situation happen to you sometime in your past, in school: One of your "chummier" teachers chats with the class about a book report that has to be done for next week. At this point, since the teacher seems so friendly, some of your classmates start whining about how unfair the assignment is and how it's a waste of time. At this point, the teacher has had their authority challenged. Consequently, they take a step back from their chummyness and exlaim "Hey! This classroom isn't a Democracy! I'm in charge and I'm telling you the book report is due next week!"
+
+The same can be said of computer programs. No computer program is architected like a Democracy. Instead, I think anyone would agree that computer programs, in general, are structured like some sort of authoritarian state, with the law dictated from above. And who is the person at the top? Well, the programmer, of course!
+
+But let me take this idea further, and divide authoritarian governments into three main types:
+
+Banana Republics
+This is the most primitive type of authoritarian government. A Banana republic is basically just a step above anarchy. Here, the government maintains the rule of law, but enforcement is arbitrary and ineffective. If you live in a banana republic, your best course is ignore most laws but instead focus on doing watever it takes to escape the wrath of the rulers. You may need to brive them, lie to them, it doesn't matter. The only important thing is to escape their scrutiny and live to see another day. All of us have once written that were Banana Republics: A novice programmer will do "whatever it takes" in their code to solve a problem and will ignore all rules of prudent code design, since they do not yet know that these rules exist. When I now think of all the hackish Banana Republic software I created in Commodore 64 Basic back in elementary school it makes me hang my head in shame to this day.
+
+Marxist States
+The next main type of authoritarian government is the Marxist State. This is the "ideal" version of Communism envisioned by Marx. One of the big lessons of the 21st Century is that it is probably impossible to actually build such a state in the real world. In a Marxist State, almost all people are "workers" organized in loose collectives, everyone pitching in what they can to keep things running. Each worker has strong "workers rights" and enjoys equality and dignity. The government is very small and only gives occasional broad mandates to keep the country on the right track.
+Probably the closest thing mankind has ever created to a Marxist state are, in my opinion, large technology companies. At least in theory, a programmer at Google, Valve, or Facebook is equal in status with their coworkers, and has flexibility in their work, as long as it keeps the company moving forward. They are organized into loose teams, and every programmer has rights and responsibilities. The executive team interferes minimally, as long as all teams are moving in a fruitful direction.
+In the world of programming, I would argue that object-oriented programming is a similar model of a Marxist State: Every object is a worker and has well-defined rights and responsibilities. Their rights include the right to own private data in variables that others are not allowed to see or modify. Also, they have the right not to be bipassed willy-nilly: For instance, if an object is responsible for maintaining a file on the harddrive, it would be bad form for another part of the program to directly modify the file without 
+
+
+WebFUI is transparent because everything is data
+In WebFUI, all functions are kept in a state of ignorance regarding the outside world
+In MVC, objects are given basic dignities, such as the right to refuse changes, the right to own private data
