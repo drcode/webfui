@@ -1,10 +1,12 @@
 # WebFUI - Client Side Web Development Framework For ClojureScript
 
-![logo](http://lisperati.com/webfui/webfui_logo.png)
+![logo](http://lisperati.com/webfui/logo.png)
 
 ## Philosophy of WebFUI
 
-The goal of WebFUI is to let you do client-side Web programming in ClojureScript without having to ever deal with the DOM. Instead, all DOM is generated in realtime from a global Clojure atom that contains all the state for the program. Additionally, you supply a single function called "render-all" that can take the state and generate "enhanced" HTML from it. The DOM is automatically and continuously kept in sync with this HTML by WebFUI. Your program is only responsible for providing the functions shown in red in the picture below:
+The goal of WebFUI is to let you do client-side Web programming in ClojureScript without having to ever deal with the DOM. Instead, all DOM is generated in realtime from a Clojure atom that contains just "plain old data" (called [EDN](https://github.com/edn-format/edn) in Clojure.) This "DOM EDN" is also kept synchronized with a state atom that also contains EDN, where all the state for your program is kept.
+
+You, the programmer, is only responsible for providing the functions shown in red in the picture below:
 
 ![graph](http://lisperati.com/webfui/graph.png)
 
@@ -14,7 +16,7 @@ These functions in red can be written 100% in the functional style, which is one
 
 ## Tech Demo Showing Off WebFUI
 
-Here is an inverse kinematics demo written 100% in ClojureScript- Browse the source code in the webfui-examples directory. This example is pure HTML5, and using WebFUI means none of the application code directly manipulates the DOM. Click on the figure to drag it around the screen. 
+Here is an [inverse kinematics demo written 100% in ClojureScript](http://lisperati.com/webfui/inverse_kinematics.html)- Browse the source code in the webfui-examples directory. This example is pure HTML5, and using WebFUI means none of the application code directly manipulates the DOM. Click on the figure to drag it around the screen. 
 
 ## Installing WebFUI
 
@@ -32,14 +34,14 @@ In the webfui-examples directory you'll see examples of webfui in action. Just r
 
 A Simple WebFUI App
 
-Here is concrete example program using WebFUI. It displays two edit fields and displays the sum of the numbers entered into those fields as a result (try it here- Requires Chrome or Safari as of now)
+Here is concrete example program using WebFUI. It displays two edit fields and displays the sum of the numbers entered into those fields as a result (try it [here](http://lisperati.com/webfui/add_two_numbers.html))
 
 ```clojure
 (ns webfui-examples.add-two-numbers.core
   (:use [webfui.framework :only [launch-app]])
   (:use-macros [webfui.framework.macros :only [add-dom-watch]]))
 
-(defn render-all [state]
+(defn render-all [state]❶
   (let [{:keys [a b]} state]
     [:div [:input#a {:watch :watch :value a}]
      " plus "
