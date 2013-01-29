@@ -4,7 +4,7 @@
 
 ## Philosophy of WebFUI
 
-The goal of WebFUI is to let you do client-side Web programming in ClojureScript without having to ever deal with the DOM. Instead, all DOM is generated in realtime from a Clojure atom that contains just "plain old data" (called [EDN](https://github.com/edn-format/edn) in Clojure.) This "DOM EDN" is also kept synchronized with a state atom that also contains EDN, where all the state for your program is kept.
+The goal of WebFUI is to let you do client-side Web programming in ClojureScript without having to ever deal with the DOM. Instead, all DOM is generated in realtime from a Clojure atom that contains just "plain old data" (called [EDN](https://github.com/edn-format/edn) in Clojure.) This "DOM EDN" is kept nsynchronized with a state atom that also contains EDN, where all the state for your program is kept.
 
 You, the programmer, is only responsible for providing the functions shown in red in the picture below:
 
@@ -16,7 +16,16 @@ These functions in red can be written 100% in the functional style, which is one
 
 ## Tech Demo Showing Off WebFUI
 
-Here is an [inverse kinematics demo written 100% in ClojureScript](http://lisperati.com/webfui/inverse_kinematics.html)- Browse the source code in the webfui-examples directory. This example is pure HTML5, and using WebFUI means none of the application code directly manipulates the DOM. Click on the figure to drag it around the screen. 
+Here is an [inverse kinematics demo written 100% in ClojureScript](http://lisperati.com/webfui/inverse_kinematics.html)- Browse the source code in the webfui-examples directory. This example is pure HTML5, and using WebFUI means none of the application code directly manipulates the DOM. Click on the figure to drag it around the screen.
+For further demos, check out this [calculator](http://lisperati.com/webfui/calculator.html) and [this example of mouse interaction](http://lisperati.com/webfui/mouse_tracking.html).
+
+## Performance Challenges
+
+One of the key design choices in WebFUI is that the DOM and the program state are strongly linked via a super simple mechanism: *Any* change to the state updates *all* the DOM. Similarly *any* changes to the DOM (Such as by the user entering text into a form field) updates *all* the state. This makes your code very simple, but can affect performance of your app.
+
+However, WebFUI mitigates the inefficiency of this two-way synchronization of state and the DOM in various ways. First of all, ClojureScript has highly-efficient persistent data structures that WebFUI can use to minimize these performance penalties. Also, WebFUI performs delta calculations during DOM changes to send as few DOM updates as possible to the web browser. Luckily, all the browser vendors are currently in a javascript performance arms race, making this less of a problem over time.
+
+Because of these optimizations, WebFUI has reasonable performance in most real-world applications (use the examples included with webfui as a guide to judge app responsiveness.) However, on some devices, such as older iPad/iPhones, Javascript is still relatively slow, and you'll notice some delays in a WebFUI-based HTML5 app.
 
 ## Installing WebFUI
 
@@ -32,7 +41,7 @@ Your application needs to be a ClojureScript application, and I recommend you us
 
 In the webfui-examples directory you'll see examples of webfui in action. Just run "lein deps;lein cljsbuild once;lein run" and fire up your Safari, Chrome, or iOS browser to "localhost:8080".
 
-A Simple WebFUI App
+## A Simple WebFUI App
 
 Here is an entire concrete example program using WebFUI. It displays two edit fields and displays the sum of the numbers entered into those fields as a result (try it [here](http://lisperati.com/webfui/add_two_numbers.html))
 
@@ -66,9 +75,25 @@ We initialize a WebFUI app by calling `launch-app` ❼ and supplying a state ato
 
 ## How DOM Changes Make it to the State
 
-This happens by attaching *DOM watchers* to the DOM. You can see right here ❷ and here ❸ that there is an attribute called `watch` attached to the generated html (WebFUI html can have special attributes that goes beyond standard html.) This will link the edit controls to a DOM watcher declared here ❺. The DOM watcher is responsible for updating the state to adjust to changes in the DOM: In this case, it means to update the A and B fields in the state (which it does by looking up the ID of the text field which is the same as the key in the state ❻) if the numbers entered in by the user into the fields changes. Note that it checks whether the fields contain valid integers with this function ❹. Because of the realtime nature of WebFUI you'll see that this automagically prevents a user from entering non-numeric values into the text fields.
+This happens by attaching *DOM watchers* to the DOM. You can see right here ❷ and here ❸ that there is an attribute called `watch` attached to the generated html (WebFUI html can have special attributes that goes beyond standard html.) This will link the edit controls to a DOM watcher declared here ❺. The DOM watcher is responsible for updating the state to adjust to changes in the DOM: In this case, it means to update the A and B fields in the state (which it does by looking up the ID of the text field which is the same as the key in the state ❻) if the numbers entered in by the user into either text field changes.
 
-These DOM watchers are fundamentally different than javascript "on__" events in that they use a "Show, don't tell" design: You don't get an *event object* telling you *what* changed, but instead get to look at the before and after versions of the HTML (passed in via `new-element` and `old-element` ❺) that *shows* you what changed.
+Note that the DOM watcher checks whether the fields contain valid integers with this function ❹. Because of the realtime nature of WebFUI you'll see that this automagically prevents a user from entering non-numeric values into the text fields.
+
+These DOM watchers are fundamentally different than javascript "on__" events in that they use a "Show, don't tell" design: You don't get an *event object* _telling_ you what changed, but instead get to look at the before and after versions of the HTML (passed in via `new-element` and `old-element` ❺) that _shows_ you what changed.
+
+## Pinpoint Changes to the State
+
+As we've seen, in WebFUI the DOM is updated in a wholesale fashion from the program state, and the program state is updated wholesale from the DOM, as well. However, usually when we update our program state we want to do it in a pinpoint fashion. Because of this, the state returned from a dom watcher is actually a *delta* applied to the program state: If a key is left unmentioned, it is left with its previous value, in a recursive fashion. To understand more about the model used for updating state using diffs, read the section on `webfui.state-patch` in [this document](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8).
+
+## WebFUI Plugins
+
+WebFUI has a plugin mechanism for adding support for different types of user interaction. Plugins are used to add support for mouse actions, calculating scroll bar positions, and many more plugins are planned for the future.
+
+[Read the following document to learn more about the design of WebFUI and the plugin architecture.](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8)
+
+## Mouse Support/Further Documentation
+
+To learn how to handle mouse interactions in WebFUI, please check the section on mouse support in [this document](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8).
 
 ## License
 
