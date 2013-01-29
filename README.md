@@ -10,7 +10,7 @@ You, the programmer, is only responsible for providing the functions shown in re
 
 ![graph](http://lisperati.com/webfui/graph.png)
 
-These functions in red can be written 100% in the functional style, which is one of the benefits of WebFUI. The other benefit is that the data that controls the DOM is just "plain old data" that eases unit testing and debugging.
+These functions in red can be written 100% in the functional style, which is one of the benefits of WebFUI. Also, having EDN as the arguments/results for all your app functions makes debugging/unit testing extremely easy. Finally, WebFUI code is extremely succinct- [This fully-featured calculator app](http://lisperati.com/webfui/calculator.html) consists of [only 92 lines of code!](https://github.com/drcode/webfui/blob/master/webfui-examples/src-cljs/calculator/core.cljs)
 
 *Note: WebFUI is still an alpha project and has some limitations. Currently it only supports only Webkit based browsers (Chrome, Safari, including on Android/iOS).*
 
