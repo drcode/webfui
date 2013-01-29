@@ -4,20 +4,20 @@
 
 ## Philosophy of WebFUI
 
-The goal of WebFUI is to let you do client-side Web programming in ClojureScript without having to ever deal with the DOM. Instead, all DOM is generated in realtime from a Clojure atom that contains just "plain old data" (called [EDN](https://github.com/edn-format/edn) in Clojure.) This "DOM EDN" is kept nsynchronized with a state atom that also contains EDN, where all the state for your program is kept.
+The goal of WebFUI is to let you do client-side Web programming in ClojureScript without having to ever deal with the DOM. Instead, all DOM is generated in realtime from a Clojure atom that contains just "plain old data" (called [EDN](https://github.com/edn-format/edn) in Clojure.) This "DOM EDN" is kept synchronized with a state atom that also contains EDN, where all the state for your program is kept.
 
 You, the programmer, is only responsible for providing the functions shown in red in the picture below:
 
 ![graph](http://lisperati.com/webfui/graph.png)
 
-These functions in red can be written 100% in the functional style, which is one of the benefits of WebFUI. Also, having EDN as the arguments/results for all your app functions makes debugging/unit testing extremely easy. Finally, WebFUI code is extremely succinct- [This fully-featured calculator app](http://lisperati.com/webfui/calculator.html) consists of [only 92 lines of code!](https://github.com/drcode/webfui/blob/master/webfui-examples/src-cljs/calculator/core.cljs)
+These functions in red can be written 100% in the functional style, which is one of the benefits of WebFUI. Also, having EDN as the arguments/results for all your app functions makes debugging/unit testing extremely easy. Finally, WebFUI code is extremely succinct- [This fully-featured calculator app](http://lisperati.com/webfui/calculator.html) consists of [only 92 lines of code](https://github.com/drcode/webfui/blob/master/webfui-examples/src-cljs/calculator/core.cljs), which includes all html generation!
 
-*Note: WebFUI is still an alpha project and has some limitations. Currently it only supports only Webkit based browsers (Chrome, Safari, including on Android/iOS).*
+*Note: WebFUI is still an alpha project and has limitations. Currently it only supports only Webkit based browsers (Chrome, Safari, including on Android/iOS).*
 
 ## Tech Demo Showing Off WebFUI
 
 Here is an [inverse kinematics demo written 100% in ClojureScript](http://lisperati.com/webfui/inverse_kinematics.html)- Browse the source code in the `webfui-examples` directory. This example is pure HTML5, and using WebFUI means none of the application code directly manipulates the DOM. Click on the figure to drag it around the screen.
-For further demos, check out this [calculator](http://lisperati.com/webfui/calculator.html) and [this example of mouse interaction](http://lisperati.com/webfui/mouse_tracking.html)(drag numbers in the circle on top of each other to see what it does.)
+For further demos, check out this [calculator](http://lisperati.com/webfui/calculator.html) and [this example of mouse interaction](http://lisperati.com/webfui/mouse_tracking.html) (drag numbers in the circle on top of each other to see what it does.)
 
 ## Performance Challenges
 
@@ -35,11 +35,11 @@ WebFUI is best installed by using [leiningen](https://github.com/technomancy/lei
 :dependencies [[webfui "0.2.1"]]
 ```
 
-Your application needs to be a ClojureScript application, and I recommend you use the [lein-cljsbuild plugin](https://github.com/emezeske/lein-cljsbuild) plugin for leiningen to build it.
+Your application needs to be a ClojureScript application, and I recommend you use the [lein-cljsbuild plugin](https://github.com/emezeske/lein-cljsbuild) for leiningen to build it.
 
 ## Compiling the Examples
 
-In the webfui-examples directory you'll see examples of webfui in action. Just run "lein deps;lein cljsbuild once;lein run" and fire up your Safari, Chrome, or iOS browser to "localhost:8080".
+In the webfui-examples directory you'll see examples of webfui in action. Just run `lein deps;lein cljsbuild once;lein run` and fire up your Safari, Chrome, or iOS browser to "localhost:8080".
 
 ## A Simple WebFUI App
 
@@ -83,7 +83,7 @@ These DOM watchers are fundamentally different than javascript "on__" events in 
 
 ## Pinpoint Changes to the State
 
-As we've seen, in WebFUI the DOM is updated in a wholesale fashion from the program state, and the program state is updated wholesale from the DOM, as well. However, usually when we update our program state we want to do it in a pinpoint fashion. Because of this, the state returned from a dom watcher is actually a *delta* applied to the program state: If a key is left unmentioned, it is left with its previous value, in a recursive fashion. To understand more about the model used for updating state using diffs, read the section on `webfui.state-patch` in [this document](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8).
+As we've seen, in WebFUI the DOM is updated in a wholesale fashion from the program state, and the program state is updated wholesale from the DOM, as well. However, usually when we update our program state we want to do it in a pinpoint fashion. Because of this, the state returned from a DOM watcher is actually a *delta* applied to the program state: If a key is left unmentioned, it is left with its previous value, in a recursive fashion. To understand more about the model used for updating state using diffs, read the section on `webfui.state-patch` in [this document](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8).
 
 ## WebFUI Plugins
 
