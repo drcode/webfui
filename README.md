@@ -16,8 +16,8 @@ These functions in red can be written 100% in the functional style, which is one
 
 ## Tech Demo Showing Off WebFUI
 
-Here is an [inverse kinematics demo written 100% in ClojureScript](http://lisperati.com/webfui/inverse_kinematics.html)- Browse the source code in the webfui-examples directory. This example is pure HTML5, and using WebFUI means none of the application code directly manipulates the DOM. Click on the figure to drag it around the screen.
-For further demos, check out this [calculator](http://lisperati.com/webfui/calculator.html) and [this example of mouse interaction](http://lisperati.com/webfui/mouse_tracking.html).
+Here is an [inverse kinematics demo written 100% in ClojureScript](http://lisperati.com/webfui/inverse_kinematics.html)- Browse the source code in the `webfui-examples` directory. This example is pure HTML5, and using WebFUI means none of the application code directly manipulates the DOM. Click on the figure to drag it around the screen.
+For further demos, check out this [calculator](http://lisperati.com/webfui/calculator.html) and [this example of mouse interaction](http://lisperati.com/webfui/mouse_tracking.html)(drag numbers in the circle on top of each other to see what it does.)
 
 ## Performance Challenges
 
