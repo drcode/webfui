@@ -61,7 +61,7 @@ Here is an entire concrete example program using WebFUI. It displays two edit fi
 (defn valid-integer [s]❹
   (and (< (count s) 15) (re-matches #"^[0-9]+$" s)))
 
-(add-dom-watch :watch [state new-element old-element]❺
+(add-dom-watch :watch [state new-element]❺
                (let [{:keys [value id]} (second new-element)]
                  (when (valid-integer value)
                    {id (js/parseInt value)})))❻
@@ -79,21 +79,21 @@ This happens by attaching *DOM watchers* to the DOM. You can see right here ❷ 
 
 Note that the DOM watcher checks whether the fields contain valid integers with this function ❹. Because of the realtime nature of WebFUI you'll see that this automagically prevents a user from entering non-numeric values into the text fields.
 
-These DOM watchers are fundamentally different than javascript "on__" events in that they use a "Show, don't tell" design: You don't get an *event object* _telling_ you what changed, but instead get to look at the before and after versions of the HTML (passed in via `new-element` and `old-element` ❺) that _shows_ you what changed.
+These DOM watchers are fundamentally different than javascript "on__" events in that they use a "Show, don't tell" design: You don't get an *event object* _telling_ you what changed, but instead get a concrete look at the proposed changes to the HTML via `new-element`❺ (which can be compared to the `state` to see what was there before) that _shows_ you what changed.
 
 ## Pinpoint Changes to the State
 
-As we've seen, in WebFUI the DOM is updated in a wholesale fashion from the program state, and the program state is updated wholesale from the DOM, as well. However, usually when we update our program state we want to do it in a pinpoint fashion. Because of this, the state returned from a DOM watcher is actually a *delta* applied to the program state: If a key is left unmentioned, it is left with its previous value, in a recursive fashion. To understand more about the model used for updating state using diffs, read the section on `webfui.state-patch` in [this document](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8).
+As we've seen, in WebFUI the DOM is updated in a wholesale fashion from the program state, and the program state is updated wholesale from the DOM, as well. However, usually when we update our program state we want to do it in a pinpoint fashion. Because of this, the state returned from a DOM watcher is actually a *delta* applied to the program state: If a key is left unmentioned, it is left with its previous value, in a recursive fashion. To understand more about the model used for updating state using diffs, read the section on `webfui.state-patch` in [this document](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8/edit).
 
 ## WebFUI Plugins
 
 WebFUI has a plugin mechanism for adding support for different types of user interaction. Plugins are used to add support for mouse actions, calculating scroll bar positions, and many more plugins are planned for the future.
 
-[Read the following document to learn more about the design of WebFUI and the plugin architecture.](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8)
+[Read the following document to learn more about the design of WebFUI and the plugin architecture.](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8/edit)
 
 ## Mouse Support/Further Documentation
 
-To learn how to handle mouse interactions in WebFUI, please check the section on mouse support in [this document](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8).
+To learn how to handle mouse interactions in WebFUI, please check the section on mouse support in [this document](https://docs.google.com/document/d/1KQn_saQurqgvxHiyuOZ7twK4K_w_VftBHrPKJolwEZ8/edit).
 
 ## License
 
