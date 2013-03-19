@@ -15,10 +15,16 @@
                                      value))]
         (event element new-element)))))
 
+(def eventListeners (atom []))
+
 (deftype form-values []
   Plugin
-  (declare-events [this body dom-watchers parsed-html]
-                  (.addEventListener body "input" (partial input dom-watchers parsed-html)))
+  (declare-events 
+   [this body dom-watchers parsed-html]
+   (doseq [e @eventListeners] (.removeEventListener body "input" e false))
+   (let [eventListener (partial input dom-watchers parsed-html)]
+    (.addEventListener    body "input" eventListener false)
+    (swap! eventListeners conj eventListener)))
   (fix-dom [this]
            nil))
 
